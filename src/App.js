@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import GeneralInfo from './components/GeneralInfo';
+import EducationInfo from './components/EducationInfo';
 class App extends Component {
   constructor () {
     super();
@@ -8,6 +9,8 @@ class App extends Component {
       name : 'Enter full name',
       email : 'Enter e-mail',
       phoneNo: '(xxx)-xxx-xxxx',
+      schoolName: 'Enter name of school',
+      studyTitle: 'Enter Degree/Field of Study',
     };
   }
   handleNameChange = (e) => {
@@ -15,33 +18,31 @@ class App extends Component {
       name : e.target.value,
     });
   }
-
   handleEmailChange = (e) => {
     this.setState({
       email: e.target.value,
     });
   }
-
   handleNumberChange = (e) => {
     this.setState({
       phoneNo: e.target.value,
     });
   }
+  handleSchoolChange = (e) => {
+    this.setState({
+      schoolName: e.target.value,
+    });
+  }
+  handleTitleChange = (e) => {
+    this.setState({
+      studyTitle: e.target.value,
+    });
+  }
 
   render() {
-    const { name, email, phoneNo } = this.state;
+    const { name, email, phoneNo, schoolName, studyTitle } = this.state;
     return (
       <div>
-        {/* <form>
-          <h2>General Info</h2>
-          <label htmlFor='nameInput'>Name:</label>
-          <input onChange={this.handleNameChange} type='text' id='nameInput' value={this.state.name} />
-          <label htmlFor='emailInput'>Email:</label>
-          <input onChange={this.handleEmailChange} type='text' id='emailInput' value={this.state.email}/>
-          <label htmlFor='phoneNoInput'>Phone No.:</label>
-          <input onChange={this.handleNumberChange} type='text' id='phoneNoInput' value={this.state.phoneNo} />
-          <button type='submit'>Submit</button>
-        </form> */}
         <GeneralInfo 
           name={name} 
           email={email}
@@ -49,6 +50,12 @@ class App extends Component {
           handleName={this.handleNameChange.bind(this)}
           handleEmail={this.handleEmailChange.bind(this)}
           handleNumber={this.handleNumberChange.bind(this)}
+          />
+        <EducationInfo 
+          schoolName={schoolName} 
+          studyTitle={studyTitle}
+          handleSchool={this.handleSchoolChange.bind(this)}
+          handleTitle={this.handleTitleChange.bind(this)}
           />
       </div>
     )
