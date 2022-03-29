@@ -1,16 +1,16 @@
 
 const GeneralInfo = (props) => {
-
+    const {name, email, phoneNo, handleName, handleEmail, handleNumber } = props;
     return (
         <div>
         <form>
           <h2>General Info</h2>
           <label htmlFor='nameInput'>Name:</label>
-          <input onChange={this.handleNameChange} type='text' id='nameInput' value={this.state.name} />
+          <input onChange={handleName} type='text' id='nameInput' value={name} />
           <label htmlFor='emailInput'>Email:</label>
-          <input onChange={this.handleEmailChange} type='text' id='emailInput' value={this.state.email}/>
+          <input onChange={handleEmail} type='text' id='emailInput' value={email}/>
           <label htmlFor='phoneNoInput'>Phone No.:</label>
-          <input onChange={this.handleNumberChange} type='text' id='phoneNoInput' value={this.state.phoneNo} />
+          <input onChange={handleNumber} type='text' id='phoneNoInput' value={phoneNo} />
           <button type='submit'>Submit</button>
         </form>
       </div>

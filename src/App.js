@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import GeneralInfo from './components/GeneralInfo';
 class App extends Component {
   constructor () {
     super();
@@ -29,9 +29,10 @@ class App extends Component {
   }
 
   render() {
+    const { name, email, phoneNo } = this.state;
     return (
       <div>
-        <form>
+        {/* <form>
           <h2>General Info</h2>
           <label htmlFor='nameInput'>Name:</label>
           <input onChange={this.handleNameChange} type='text' id='nameInput' value={this.state.name} />
@@ -40,7 +41,15 @@ class App extends Component {
           <label htmlFor='phoneNoInput'>Phone No.:</label>
           <input onChange={this.handleNumberChange} type='text' id='phoneNoInput' value={this.state.phoneNo} />
           <button type='submit'>Submit</button>
-        </form>
+        </form> */}
+        <GeneralInfo 
+          name={name} 
+          email={email}
+          phoneNo={phoneNo} 
+          handleName={this.handleNameChange.bind(this)}
+          handleEmail={this.handleEmailChange.bind(this)}
+          handleNumber={this.handleNumberChange.bind(this)}
+          />
       </div>
     )
   }
