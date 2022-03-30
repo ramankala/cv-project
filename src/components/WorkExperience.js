@@ -5,7 +5,8 @@ const WorkExperience = (props) => {
         workDesc, 
         handleCompanyName, 
         handlePositionTitle,
-        handleWorkDesc} = props;
+        handleWorkDesc,
+        workBtn} = props;
     return (
         <div>
             <form>
@@ -20,7 +21,7 @@ const WorkExperience = (props) => {
                 <input type="date" id="workFrom" />
                 <label htmlFor="workTo">End Date:</label>
                 <input type="date" id="workTo" />
-                <button type="submit" id="workBtn">Submit</button>
+                <button onClick={workBtn} type="submit" id="workBtn">Submit</button>
             </form>
         </div>
     )

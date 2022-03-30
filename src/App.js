@@ -4,6 +4,7 @@ import EducationInfo from './components/EducationInfo';
 import WorkExperience from './components/WorkExperience';
 import GeneralOverview from './components/GeneralOverview';
 import EduInfoOverview from './components/EduInfoOverview';
+import WorkExpOverview from './components/WorkExpOverview';
 class App extends Component {
   constructor () {
     super();
@@ -74,7 +75,14 @@ class App extends Component {
     e.preventDefault();
     this.setState({
       eduInfo: this.state.eduInfo.concat(schoolName, studyTitle),
-    })
+    });
+  }
+  handleWorkClick = (e) => {
+    const { companyName, positionTitle, workDesc } = this.state;
+    e.preventDefault();
+    this.setState({
+      workExp: this.state.workExp.concat(companyName, positionTitle, workDesc),
+    });
   }
 
   render() {
@@ -89,6 +97,7 @@ class App extends Component {
       workDesc,
       genInfo,
       eduInfo,
+      workExp,
       } = this.state;
     return (
       <div>
@@ -117,7 +126,9 @@ class App extends Component {
         handleCompanyName={this.handleCompanyName.bind(this)}
         handlePositionTitle={this.handlePositionTitle.bind(this)}
         handleWorkDesc={this.handleWorkDesc.bind(this)}
+        workBtn={this.handleWorkClick.bind(this)}
          />
+         <WorkExpOverview workArr={workExp} />
       </div>
     )
   }
