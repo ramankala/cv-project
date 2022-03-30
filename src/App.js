@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import GeneralInfo from './components/GeneralInfo';
 import EducationInfo from './components/EducationInfo';
 import WorkExperience from './components/WorkExperience';
+import GeneralOverview from './components/GeneralOverview';
+import EduInfoOverview from './components/EduInfoOverview';
 class App extends Component {
   constructor () {
     super();
@@ -15,6 +17,9 @@ class App extends Component {
       companyName: 'Enter name of Company',
       positionTitle: 'Enter Job Title',
       workDesc: 'Enter main role in this position',
+      genInfo: [],
+      workExp: [],
+      eduInfo: [],
     };
   }
   handleNameChange = (e) => {
@@ -57,6 +62,20 @@ class App extends Component {
       workDesc: e.target.value,
     });
   }
+  handleGeneralClick = (e) => {
+    const { name, email, phoneNo} = this.state;
+    e.preventDefault();
+    this.setState({
+      genInfo: this.state.genInfo.concat(name, email, phoneNo),
+    });
+  }
+  handleEduClick = (e) => {
+    const { schoolName, studyTitle, } = this.state;
+    e.preventDefault();
+    this.setState({
+      eduInfo: this.state.eduInfo.concat(schoolName, studyTitle),
+    })
+  }
 
   render() {
     const { 
@@ -68,6 +87,8 @@ class App extends Component {
       companyName,
       positionTitle,
       workDesc,
+      genInfo,
+      eduInfo,
       } = this.state;
     return (
       <div>
@@ -78,13 +99,17 @@ class App extends Component {
           handleName={this.handleNameChange.bind(this)}
           handleEmail={this.handleEmailChange.bind(this)}
           handleNumber={this.handleNumberChange.bind(this)}
+          generalBtn={this.handleGeneralClick.bind(this)}
           />
+        <GeneralOverview genArr={genInfo}/>
         <EducationInfo 
           schoolName={schoolName} 
           studyTitle={studyTitle}
           handleSchool={this.handleSchoolChange.bind(this)}
           handleTitle={this.handleTitleChange.bind(this)}
+          eduBtn={this.handleEduClick.bind(this)}
           />
+          <EduInfoOverview eduArr={eduInfo} />
         <WorkExperience
         companyName={companyName}
         positionTitle={positionTitle}

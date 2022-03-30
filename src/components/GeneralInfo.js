@@ -1,5 +1,13 @@
 const GeneralInfo = (props) => {
-    const {name, email, phoneNo, handleName, handleEmail, handleNumber } = props;
+    const {
+      name,
+      email, 
+      phoneNo, 
+      handleName, 
+      handleEmail, 
+      handleNumber, 
+      generalBtn, 
+    } = props;
     return (
         <div>
         <form>
@@ -10,7 +18,7 @@ const GeneralInfo = (props) => {
           <input onChange={handleEmail} type='text' id='emailInput' placeholder={email}/>
           <label htmlFor='phoneNoInput'>Phone No.: </label>
           <input onChange={handleNumber} type='text' id='phoneNoInput' placeholder={phoneNo} />
-          <button type='submit'>Submit</button>
+          <button onClick={generalBtn} type='submit' id="generalBtn">Submit</button>
         </form>
       </div>
     )

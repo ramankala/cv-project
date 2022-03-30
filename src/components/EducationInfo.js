@@ -1,5 +1,5 @@
 const EducationInfo = (props) => {
-    const { schoolName, studyTitle, handleSchool, handleTitle } = props;
+    const { schoolName, studyTitle, handleSchool, handleTitle, eduBtn } = props;
     return (
         <div>
             <form>
@@ -12,7 +12,7 @@ const EducationInfo = (props) => {
                 <input type="date" id="dateFrom" />
                 <label htmlFor="dateTo">To: </label>
                 <input type="date" id="dateTo" />
-                <button type="submit">Submit</button>
+                <button onClick={eduBtn} type="submit">Submit</button>
             </form>
         </div>
     )
