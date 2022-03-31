@@ -1,8 +1,9 @@
 const EducationInfo = (props) => {
-    const { schoolName, studyTitle, handleSchool, handleTitle, eduBtn } = props;
+    const { schoolName, studyTitle, handleSchool, handleTitle, eduBtn, display } = props;
     return (
-        <div>
-            <form>
+        display
+        ? <div>
+            <form onSubmit={eduBtn}>
                 <h2>Educational Experience</h2>
                 <label htmlFor="schoolNameInput">School Name: </label>
                 <input onChange={handleSchool} type="text" id="schoolNameInput" placeholder={schoolName} />
@@ -12,9 +13,10 @@ const EducationInfo = (props) => {
                 <input type="date" id="dateFrom" />
                 <label htmlFor="dateTo">To: </label>
                 <input type="date" id="dateTo" />
-                <button onClick={eduBtn} type="submit">Submit</button>
+                <button type="submit">Submit</button>
             </form>
         </div>
+        : null
     )
 }
 

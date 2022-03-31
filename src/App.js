@@ -8,6 +8,7 @@ import WorkExpOverview from './components/WorkExpOverview';
 class App extends Component {
   constructor () {
     super();
+    this.myRef = React.createRef();
 
     this.state = {
       name : 'Enter full name',
@@ -21,6 +22,9 @@ class App extends Component {
       genInfo: [],
       workExp: [],
       eduInfo: [],
+      genDisplay: true,
+      eduDisplay: true,
+      workDisplay: true,
     };
   }
   handleNameChange = (e) => {
@@ -69,6 +73,7 @@ class App extends Component {
     e.preventDefault();
     this.setState({
       genInfo: this.state.genInfo.concat(name, email, phoneNo),
+      genDisplay: false,
     });
   }
   handleEduClick = (e) => {
@@ -77,6 +82,7 @@ class App extends Component {
     e.preventDefault();
     this.setState({
       eduInfo: this.state.eduInfo.concat(schoolName, studyTitle),
+      eduDisplay: false,
     });
   }
   handleWorkClick = (e) => {
@@ -85,6 +91,22 @@ class App extends Component {
     e.preventDefault();
     this.setState({
       workExp: this.state.workExp.concat(companyName, positionTitle, workDesc),
+      workDisplay: false,
+    });
+  }
+  handleGenEdit = (e) => {
+    this.setState({
+      genDisplay: true,
+    });
+  };
+  handleEduEdit = (e) => {
+    this.setState({
+      eduDisplay: true,
+    });
+  };
+  handleWorkEdit = (e) => {
+    this.setState({
+      workDisplay: true,
     });
   }
 
@@ -101,37 +123,43 @@ class App extends Component {
       genInfo,
       eduInfo,
       workExp,
+      genDisplay,
+      eduDisplay,
+      workDisplay,
       } = this.state;
     return (
       <div>
         <GeneralInfo 
           name={name} 
           email={email}
-          phoneNo={phoneNo} 
+          phoneNo={phoneNo}
+          display={genDisplay} 
           handleName={this.handleNameChange.bind(this)}
           handleEmail={this.handleEmailChange.bind(this)}
           handleNumber={this.handleNumberChange.bind(this)}
           generalBtn={this.handleGeneralClick.bind(this)}
           />
-        <GeneralOverview genArr={genInfo}/>
+        <GeneralOverview genArr={genInfo} editFields={this.handleGenEdit.bind(this)}/>
         <EducationInfo 
           schoolName={schoolName} 
           studyTitle={studyTitle}
+          display={eduDisplay}
           handleSchool={this.handleSchoolChange.bind(this)}
           handleTitle={this.handleTitleChange.bind(this)}
           eduBtn={this.handleEduClick.bind(this)}
           />
-        <EduInfoOverview eduArr={eduInfo} />
+        <EduInfoOverview eduArr={eduInfo} editFields={this.handleEduEdit.bind(this)}/>
         <WorkExperience
         companyName={companyName}
         positionTitle={positionTitle}
         workDesc={workDesc}
+        display={workDisplay}
         handleCompanyName={this.handleCompanyName.bind(this)}
         handlePositionTitle={this.handlePositionTitle.bind(this)}
         handleWorkDesc={this.handleWorkDesc.bind(this)}
         workBtn={this.handleWorkClick.bind(this)}
          />
-        <WorkExpOverview workArr={workExp} />
+        <WorkExpOverview workArr={workExp} editFields={this.handleWorkEdit.bind(this)}/>
       </div>
     )
   }

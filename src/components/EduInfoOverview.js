@@ -1,16 +1,15 @@
 const EduInfoOverview = (props) => {
-    const { eduArr } = props;
+    const { eduArr, editFields } = props;
     return (
         <div>
             <ul>
                 {eduArr.map((item, index) => {
                     return (
-                        <div>
-                            <li key={index}>{item}</li>
-                        </div>
+                        <li key={index}>{item}</li>
                     )
                 })}
             </ul>
+            <button onClick={editFields} type="submit">Edit</button>
         </div>
     )
 }

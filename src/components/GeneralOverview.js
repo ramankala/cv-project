@@ -1,17 +1,15 @@
 const GeneralOverview = (props) => {
-    const { genArr } = props;
+    const { genArr, editFields } = props;
     return (
         <div>
             <ul>
                 {genArr.map((item, index) => {
                     return (
-                        <div>
-                            <li key={index}>{item}</li>
-                        </div>
+                        <li key={index}>{item}</li>
                     )
                 })}
             </ul>
-            <button type="submit">Edit</button>
+            <button onClick={editFields} type="submit">Edit</button>
         </div>
     )
 }

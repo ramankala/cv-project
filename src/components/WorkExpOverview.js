@@ -1,11 +1,14 @@
 const WorkExpOverview = (props) => {
-    const { workArr } = props;
+    const { workArr, editFields } = props;
     return (
-        <ul>
-            {workArr.map((item, index) => {
-                return <li key={index}>{item}</li>
-            })}
-        </ul>
+        <div>
+            <ul>
+                {workArr.map((item, index) => {
+                    return <li key={index}>{item}</li>
+                })}
+            </ul>
+            <button onClick={editFields} type="submit">Edit</button>
+        </div>
     )
 }
 
