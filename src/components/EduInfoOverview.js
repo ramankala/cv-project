@@ -1,11 +1,17 @@
 const EduInfoOverview = (props) => {
     const { eduArr } = props;
     return (
-        <ul>
-            {eduArr.map((item) => {
-                return <li key={'apple'}>{item}</li>
-            })}
-        </ul>
+        <div>
+            <ul>
+                {eduArr.map((item, index) => {
+                    return (
+                        <div>
+                            <li key={index}>{item}</li>
+                        </div>
+                    )
+                })}
+            </ul>
+        </div>
     )
 }
 

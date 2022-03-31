@@ -2,8 +2,8 @@ const WorkExpOverview = (props) => {
     const { workArr } = props;
     return (
         <ul>
-            {workArr.map((item) => {
-                return <li key={'apple'}>{item}</li>
+            {workArr.map((item, index) => {
+                return <li key={index}>{item}</li>
             })}
         </ul>
     )

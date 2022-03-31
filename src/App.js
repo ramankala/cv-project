@@ -64,14 +64,16 @@ class App extends Component {
     });
   }
   handleGeneralClick = (e) => {
-    const { name, email, phoneNo} = this.state;
+    const { name, email, phoneNo } = this.state;
+    this.state.genInfo.splice(0, 3);
     e.preventDefault();
     this.setState({
       genInfo: this.state.genInfo.concat(name, email, phoneNo),
     });
   }
   handleEduClick = (e) => {
-    const { schoolName, studyTitle, } = this.state;
+    const { schoolName, studyTitle } = this.state;
+    this.state.eduInfo.splice(0, 3);
     e.preventDefault();
     this.setState({
       eduInfo: this.state.eduInfo.concat(schoolName, studyTitle),
@@ -79,6 +81,7 @@ class App extends Component {
   }
   handleWorkClick = (e) => {
     const { companyName, positionTitle, workDesc } = this.state;
+    this.state.workExp.splice(0, 3);
     e.preventDefault();
     this.setState({
       workExp: this.state.workExp.concat(companyName, positionTitle, workDesc),
@@ -88,9 +91,9 @@ class App extends Component {
   render() {
     const { 
       name,
-      email, 
-      phoneNo, 
-      schoolName, 
+      email,
+      phoneNo,
+      schoolName,
       studyTitle,
       companyName,
       positionTitle,
@@ -118,7 +121,7 @@ class App extends Component {
           handleTitle={this.handleTitleChange.bind(this)}
           eduBtn={this.handleEduClick.bind(this)}
           />
-          <EduInfoOverview eduArr={eduInfo} />
+        <EduInfoOverview eduArr={eduInfo} />
         <WorkExperience
         companyName={companyName}
         positionTitle={positionTitle}
@@ -128,7 +131,7 @@ class App extends Component {
         handleWorkDesc={this.handleWorkDesc.bind(this)}
         workBtn={this.handleWorkClick.bind(this)}
          />
-         <WorkExpOverview workArr={workExp} />
+        <WorkExpOverview workArr={workExp} />
       </div>
     )
   }
