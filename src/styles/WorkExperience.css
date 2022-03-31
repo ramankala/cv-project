@@ -1,0 +1,8 @@
+.WorkDiv{
+    display: flex;
+}
+.WorkForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

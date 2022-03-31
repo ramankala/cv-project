@@ -1,3 +1,4 @@
+import '../styles/WorkExperience.css';
 const WorkExperience = (props) => {
     const { 
         companyName,
@@ -10,9 +11,8 @@ const WorkExperience = (props) => {
         workBtn} = props;
     return (
         display
-        ? <div>
-            <form onSubmit={workBtn}>
-                <h2>Work Experience</h2>
+        ? <div className="WorkDiv">
+            <form onSubmit={workBtn} className="WorkForm">
                 <label htmlFor="companyName">Company Name: </label>
                 <input onChange={handleCompanyName} type="text" id="companyName" placeholder={companyName} />
                 <label htmlFor="positionTitle">Position Title: </label>

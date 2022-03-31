@@ -1,7 +1,8 @@
 const GeneralOverview = (props) => {
-    const { genArr, editFields } = props;
+    const { genArr, editFields, editDisplay } = props;
     return (
-        <div>
+        editDisplay
+        ?<div>
             <ul>
                 {genArr.map((item, index) => {
                     return (
@@ -11,6 +12,7 @@ const GeneralOverview = (props) => {
             </ul>
             <button onClick={editFields} type="submit">Edit</button>
         </div>
+        : null
     )
 }
 

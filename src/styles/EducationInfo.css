@@ -1,0 +1,8 @@
+.EducationDiv{
+    display: flex;
+}
+.EducationForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

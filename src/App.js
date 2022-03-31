@@ -5,6 +5,7 @@ import WorkExperience from './components/WorkExperience';
 import GeneralOverview from './components/GeneralOverview';
 import EduInfoOverview from './components/EduInfoOverview';
 import WorkExpOverview from './components/WorkExpOverview';
+import './styles/App.css';
 class App extends Component {
   constructor () {
     super();
@@ -25,6 +26,9 @@ class App extends Component {
       genDisplay: true,
       eduDisplay: true,
       workDisplay: true,
+      genEditBtn: false,
+      eduEditBtn: false,
+      workEditBtn: false,
     };
   }
   handleNameChange = (e) => {
@@ -74,6 +78,7 @@ class App extends Component {
     this.setState({
       genInfo: this.state.genInfo.concat(name, email, phoneNo),
       genDisplay: false,
+      genEditBtn: true,
     });
   }
   handleEduClick = (e) => {
@@ -83,6 +88,7 @@ class App extends Component {
     this.setState({
       eduInfo: this.state.eduInfo.concat(schoolName, studyTitle),
       eduDisplay: false,
+      eduEditBtn: true,
     });
   }
   handleWorkClick = (e) => {
@@ -92,21 +98,25 @@ class App extends Component {
     this.setState({
       workExp: this.state.workExp.concat(companyName, positionTitle, workDesc),
       workDisplay: false,
+      workEditBtn: true,
     });
   }
   handleGenEdit = (e) => {
     this.setState({
       genDisplay: true,
+      genEditBtn: false,
     });
   };
   handleEduEdit = (e) => {
     this.setState({
       eduDisplay: true,
+      eduEditBtn: false,
     });
   };
   handleWorkEdit = (e) => {
     this.setState({
       workDisplay: true,
+      workEditBtn: false,
     });
   }
 
@@ -126,9 +136,13 @@ class App extends Component {
       genDisplay,
       eduDisplay,
       workDisplay,
+      genEditBtn,
+      eduEditBtn,
+      workEditBtn,
       } = this.state;
     return (
-      <div>
+      <div className="container">
+        <h2>General Info</h2>
         <GeneralInfo 
           name={name} 
           email={email}
@@ -139,7 +153,12 @@ class App extends Component {
           handleNumber={this.handleNumberChange.bind(this)}
           generalBtn={this.handleGeneralClick.bind(this)}
           />
-        <GeneralOverview genArr={genInfo} editFields={this.handleGenEdit.bind(this)}/>
+        <GeneralOverview 
+          genArr={genInfo}
+          editDisplay={genEditBtn}
+          editFields={this.handleGenEdit.bind(this)}
+          />
+        <h2>Educational Experience</h2>
         <EducationInfo 
           schoolName={schoolName} 
           studyTitle={studyTitle}
@@ -148,7 +167,12 @@ class App extends Component {
           handleTitle={this.handleTitleChange.bind(this)}
           eduBtn={this.handleEduClick.bind(this)}
           />
-        <EduInfoOverview eduArr={eduInfo} editFields={this.handleEduEdit.bind(this)}/>
+        <EduInfoOverview
+          eduArr={eduInfo} 
+          editFields={this.handleEduEdit.bind(this)}
+          editDisplay={eduEditBtn}
+          />
+        <h2>Work Experience</h2>
         <WorkExperience
         companyName={companyName}
         positionTitle={positionTitle}
@@ -159,7 +183,11 @@ class App extends Component {
         handleWorkDesc={this.handleWorkDesc.bind(this)}
         workBtn={this.handleWorkClick.bind(this)}
          />
-        <WorkExpOverview workArr={workExp} editFields={this.handleWorkEdit.bind(this)}/>
+        <WorkExpOverview 
+          workArr={workExp} 
+          editFields={this.handleWorkEdit.bind(this)}
+          editDisplay={workEditBtn}
+          />
       </div>
     )
   }
