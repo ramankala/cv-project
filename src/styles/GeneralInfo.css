@@ -1,8 +1,61 @@
 .GeneralInfoDiv{
     display: flex;
+    flex: 1;
+    padding-left: 5%;
 }
 .GeneralInfoForm{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex: 1;
+    color: rgb(54, 131, 204);
+    font-size: 18px;
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+}
+h1{
+    padding-left: 5%;
+}
+h2{
+    color: rgb(54, 131, 204);
+    padding-left: 5%;
+}
+
+#nameInput, #emailInput, #phoneNoInput{
+    width: 500px;
+    padding: 1%;
+    font-size: 90%;
+}
+#generalBtn{
+    width: 20%;
+    height: auto;
+    align-self: center;
+    background-color: rgb(111, 169, 223);
+    color: white;
+    padding: 1%;
+    font-size: 16px;
+}
+.generalInfoUI{
+    padding-left: 3%;
+    display: flex;
+    flex-direction: column;
+}
+ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 22px;
+    font-weight: 540;
+}
+.generalEditBtn{
+    width: 100px;
+    height: auto;
+    padding-left: 40px;
+    background-color: rgb(111, 169, 223);
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
 }

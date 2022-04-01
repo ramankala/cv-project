@@ -1,8 +1,9 @@
+import '../styles/GeneralInfo.css';
 const GeneralOverview = (props) => {
     const { genArr, editFields, editDisplay } = props;
     return (
         editDisplay
-        ?<div>
+        ?<div className="generalInfoUI">
             <ul>
                 {genArr.map((item, index) => {
                     return (
@@ -10,7 +11,7 @@ const GeneralOverview = (props) => {
                     )
                 })}
             </ul>
-            <button onClick={editFields} type="submit">Edit</button>
+            <button onClick={editFields} type="submit" className="generalEditBtn">Edit</button>
         </div>
         : null
     )

@@ -2,7 +2,7 @@ const EduInfoOverview = (props) => {
     const { eduArr, editFields, editDisplay } = props;
     return (
         editDisplay
-        ?<div>
+        ?<div className="eduInfoUI">
             <ul>
                 {eduArr.map((item, index) => {
                     return (
@@ -10,7 +10,7 @@ const EduInfoOverview = (props) => {
                     )
                 })}
             </ul>
-            <button onClick={editFields} type="submit">Edit</button>
+            <button onClick={editFields} type="submit" className="eduEditBtn">Edit</button>
         </div>
         : null
     )

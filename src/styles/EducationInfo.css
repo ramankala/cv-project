@@ -1,8 +1,46 @@
 .EducationDiv{
     display: flex;
+    flex: 1;
+    padding-left: 5%;
 }
 .EducationForm{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    flex: 1;
+    color: rgb(54, 131, 204);
+    font-size: 18px;
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+}
+
+#schoolNameInput, #studyInput, #dateFrom, #dateTo{
+    width: 500px;
+    padding: 1%;
+    font-size: 90%;
+}
+#educationBtn{
+    width: 20%;
+    height: auto;
+    align-self: center;
+    background-color: rgb(111, 169, 223);
+    color: white;
+    padding: 1%;
+    font-size: 16px;
+}
+.eduInfoUI{
+    padding-left: 3%;
+    display: flex;
+    flex-direction: column;
+}
+.eduEditBtn{
+    width: 100px;
+    height: auto;
+    padding-left: 40px;
+    background-color: rgb(111, 169, 223);
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
 }

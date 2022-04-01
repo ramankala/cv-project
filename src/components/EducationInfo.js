@@ -1,6 +1,14 @@
 import '../styles/EducationInfo.css';
 const EducationInfo = (props) => {
-    const { schoolName, studyTitle, handleSchool, handleTitle, eduBtn, display } = props;
+    const { 
+        schoolName,
+        studyTitle, 
+        handleSchool, 
+        handleTitle,
+        updateStudyFrom,
+        updateStudyTo, 
+        eduBtn, 
+        display } = props;
     return (
         display
         ? <div className="EducationDiv">
@@ -10,10 +18,10 @@ const EducationInfo = (props) => {
                 <label htmlFor="studyInput">Title of Study: </label>
                 <input onChange={handleTitle} type="text" id="studyInput" placeholder={studyTitle} />
                 <label htmlFor="dateFrom">Date of Study: </label>
-                <input type="date" id="dateFrom" />
+                <input onChange={updateStudyFrom} type="date" id="dateFrom" />
                 <label htmlFor="dateTo">To: </label>
-                <input type="date" id="dateTo" />
-                <button type="submit">Submit</button>
+                <input onChange={updateStudyTo} type="date" id="dateTo" />
+                <button type="submit" id="educationBtn">Submit</button>
             </form>
         </div>
         : null

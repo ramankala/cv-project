@@ -5,6 +5,7 @@ import WorkExperience from './components/WorkExperience';
 import GeneralOverview from './components/GeneralOverview';
 import EduInfoOverview from './components/EduInfoOverview';
 import WorkExpOverview from './components/WorkExpOverview';
+import { format, parse } from 'date-fns';
 import './styles/App.css';
 class App extends Component {
   constructor () {
@@ -17,9 +18,13 @@ class App extends Component {
       phoneNo: '(xxx)-xxx-xxxx',
       schoolName: 'Enter name of school',
       studyTitle: 'Enter Degree/Field of Study',
+      dateStudyFrom: null,
+      dateStudyTo: null,
       companyName: 'Enter name of Company',
       positionTitle: 'Enter Job Title',
       workDesc: 'Enter main role in this position',
+      workFrom: null,
+      workTo: null,
       genInfo: [],
       workExp: [],
       eduInfo: [],
@@ -82,41 +87,85 @@ class App extends Component {
     });
   }
   handleEduClick = (e) => {
-    const { schoolName, studyTitle } = this.state;
-    this.state.eduInfo.splice(0, 3);
+    const { 
+      schoolName, 
+      studyTitle, 
+      dateStudyFrom, 
+      dateStudyTo 
+    } = this.state;
+    console.log(dateStudyFrom);
+    this.state.eduInfo.splice(0, 4);
     e.preventDefault();
     this.setState({
-      eduInfo: this.state.eduInfo.concat(schoolName, studyTitle),
+      eduInfo: this.state.eduInfo.concat(schoolName, studyTitle, dateStudyFrom, dateStudyTo),
       eduDisplay: false,
       eduEditBtn: true,
     });
   }
   handleWorkClick = (e) => {
-    const { companyName, positionTitle, workDesc } = this.state;
-    this.state.workExp.splice(0, 3);
+    const { 
+      companyName, 
+      positionTitle, 
+      workDesc, 
+      workFrom, 
+      workTo 
+    } = this.state;
+    this.state.workExp.splice(0, 5);
     e.preventDefault();
     this.setState({
-      workExp: this.state.workExp.concat(companyName, positionTitle, workDesc),
+      workExp: this.state.workExp.concat(companyName, positionTitle, workDesc, workFrom, workTo),
       workDisplay: false,
       workEditBtn: true,
     });
   }
-  handleGenEdit = (e) => {
+  handleGenEdit = () => {
     this.setState({
       genDisplay: true,
       genEditBtn: false,
     });
   };
-  handleEduEdit = (e) => {
+  handleEduEdit = () => {
     this.setState({
       eduDisplay: true,
       eduEditBtn: false,
     });
   };
-  handleWorkEdit = (e) => {
+  handleWorkEdit = () => {
     this.setState({
       workDisplay: true,
       workEditBtn: false,
+    });
+  }
+  updateStudyFrom = (e) => {
+    let date = e.target.value;
+    let parseDate = parse(date, 'yyyy-MM-dd', new Date());
+    let formatDate = format(parseDate, 'MM/dd/yyyy');
+    this.setState({
+      dateStudyFrom: formatDate,
+    });
+  }
+  updateStudyTo = (e) => {
+    let date = e.target.value;
+    let parseDate = parse(date, 'yyyy-MM-dd', new Date());
+    let formatDate = format(parseDate, 'MM/dd/yyyy');
+    this.setState({
+      dateStudyTo: formatDate,
+    });
+  }
+  updateWorkFrom = (e) => {
+    let date = e.target.value;
+    let parseDate = parse(date, 'yyyy-MM-dd', new Date());
+    let formatDate = format(parseDate, 'MM/dd/yyyy');
+    this.setState({
+      workFrom: formatDate,
+    });
+  }
+  updateWorkTo = (e) => {
+    let date = e.target.value;
+    let parseDate = parse(date, 'yyyy-MM-dd', new Date());
+    let formatDate = format(parseDate, 'MM/dd/yyyy');
+    this.setState({
+      workTo: formatDate,
     });
   }
 
@@ -142,6 +191,7 @@ class App extends Component {
       } = this.state;
     return (
       <div className="container">
+        <h1>CV Generator</h1>
         <h2>General Info</h2>
         <GeneralInfo 
           name={name} 
@@ -165,6 +215,8 @@ class App extends Component {
           display={eduDisplay}
           handleSchool={this.handleSchoolChange.bind(this)}
           handleTitle={this.handleTitleChange.bind(this)}
+          updateStudyFrom={this.updateStudyFrom.bind(this)}
+          updateStudyTo={this.updateStudyTo.bind(this)}
           eduBtn={this.handleEduClick.bind(this)}
           />
         <EduInfoOverview
@@ -181,6 +233,8 @@ class App extends Component {
         handleCompanyName={this.handleCompanyName.bind(this)}
         handlePositionTitle={this.handlePositionTitle.bind(this)}
         handleWorkDesc={this.handleWorkDesc.bind(this)}
+        updateWorkFrom={this.updateWorkFrom.bind(this)}
+        updateWorkTo={this.updateWorkTo.bind(this)}
         workBtn={this.handleWorkClick.bind(this)}
          />
         <WorkExpOverview 
