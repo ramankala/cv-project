@@ -21,7 +21,7 @@ const EducationInfo = (props) => {
                 <input onChange={updateStudyFrom} type="date" id="dateFrom" />
                 <label htmlFor="dateTo">To: </label>
                 <input onChange={updateStudyTo} type="date" id="dateTo" />
-                <button type="submit" id="educationBtn">Submit</button>
+                <button onClick={eduBtn} id="educationBtn">Submit</button>
             </form>
         </div>
         : null

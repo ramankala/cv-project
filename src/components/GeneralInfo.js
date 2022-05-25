@@ -21,7 +21,7 @@ const GeneralInfo = (props) => {
           <label htmlFor='phoneNoInput'>Phone No.: </label>
           <input onChange={handleNumber} type='text' id='phoneNoInput' placeholder={phoneNo} />
 
-          <button type='submit' id="generalBtn">Submit</button>
+          <button onClick={generalBtn} id="generalBtn">Submit</button>
         </form>
       </div>
       : null

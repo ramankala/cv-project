@@ -25,7 +25,7 @@ const WorkExperience = (props) => {
                 <input onChange={updateWorkFrom} type="date" id="workFrom" />
                 <label htmlFor="workTo">End Date:</label>
                 <input onChange={updateWorkTo} type="date" id="workTo" />
-                <button type="submit" id="workBtn">Submit</button>
+                <button onClick={workBtn} id="workBtn">Submit</button>
             </form>
         </div>
         : null

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import GeneralInfo from './components/GeneralInfo';
 import EducationInfo from './components/EducationInfo';
 import WorkExperience from './components/WorkExperience';
@@ -7,12 +7,9 @@ import EduInfoOverview from './components/EduInfoOverview';
 import WorkExpOverview from './components/WorkExpOverview';
 import { format, parse } from 'date-fns';
 import './styles/App.css';
-class App extends Component {
-  constructor () {
-    super();
-    this.myRef = React.createRef();
+function App () {
 
-    this.state = {
+  const [state, setState] = useState({
       name : 'Enter full name',
       email : 'Enter e-mail',
       phoneNo: '(xxx)-xxx-xxxx',
@@ -34,143 +31,9 @@ class App extends Component {
       genEditBtn: false,
       eduEditBtn: false,
       workEditBtn: false,
-    };
-  }
-  handleNameChange = (e) => {
-    this.setState({
-      name : e.target.value,
-    });
-  }
-  handleEmailChange = (e) => {
-    this.setState({
-      email: e.target.value,
-    });
-  }
-  handleNumberChange = (e) => {
-    this.setState({
-      phoneNo: e.target.value,
-    });
-  }
-  handleSchoolChange = (e) => {
-    this.setState({
-      schoolName: e.target.value,
-    });
-  }
-  handleTitleChange = (e) => {
-    this.setState({
-      studyTitle: e.target.value,
-    });
-  }
-  handleCompanyName = (e) => {
-    this.setState({
-      companyName: e.target.value,
-    });
-  }
-  handlePositionTitle = (e) => {
-    this.setState({
-      positionTitle: e.target.value,
-    });
-  }
-  handleWorkDesc = (e) => {
-    this.setState({
-      workDesc: e.target.value,
-    });
-  }
-  handleGeneralClick = (e) => {
-    const { name, email, phoneNo } = this.state;
-    this.state.genInfo.splice(0, 3);
-    e.preventDefault();
-    this.setState({
-      genInfo: this.state.genInfo.concat(name, email, phoneNo),
-      genDisplay: false,
-      genEditBtn: true,
-    });
-  }
-  handleEduClick = (e) => {
-    const { 
-      schoolName, 
-      studyTitle, 
-      dateStudyFrom, 
-      dateStudyTo 
-    } = this.state;
-    console.log(dateStudyFrom);
-    this.state.eduInfo.splice(0, 4);
-    e.preventDefault();
-    this.setState({
-      eduInfo: this.state.eduInfo.concat(schoolName, studyTitle, dateStudyFrom, dateStudyTo),
-      eduDisplay: false,
-      eduEditBtn: true,
-    });
-  }
-  handleWorkClick = (e) => {
-    const { 
-      companyName, 
-      positionTitle, 
-      workDesc, 
-      workFrom, 
-      workTo 
-    } = this.state;
-    this.state.workExp.splice(0, 5);
-    e.preventDefault();
-    this.setState({
-      workExp: this.state.workExp.concat(companyName, positionTitle, workDesc, workFrom, workTo),
-      workDisplay: false,
-      workEditBtn: true,
-    });
-  }
-  handleGenEdit = () => {
-    this.setState({
-      genDisplay: true,
-      genEditBtn: false,
-    });
-  };
-  handleEduEdit = () => {
-    this.setState({
-      eduDisplay: true,
-      eduEditBtn: false,
-    });
-  };
-  handleWorkEdit = () => {
-    this.setState({
-      workDisplay: true,
-      workEditBtn: false,
-    });
-  }
-  updateStudyFrom = (e) => {
-    let date = e.target.value;
-    let parseDate = parse(date, 'yyyy-MM-dd', new Date());
-    let formatDate = format(parseDate, 'MM/dd/yyyy');
-    this.setState({
-      dateStudyFrom: formatDate,
-    });
-  }
-  updateStudyTo = (e) => {
-    let date = e.target.value;
-    let parseDate = parse(date, 'yyyy-MM-dd', new Date());
-    let formatDate = format(parseDate, 'MM/dd/yyyy');
-    this.setState({
-      dateStudyTo: formatDate,
-    });
-  }
-  updateWorkFrom = (e) => {
-    let date = e.target.value;
-    let parseDate = parse(date, 'yyyy-MM-dd', new Date());
-    let formatDate = format(parseDate, 'MM/dd/yyyy');
-    this.setState({
-      workFrom: formatDate,
-    });
-  }
-  updateWorkTo = (e) => {
-    let date = e.target.value;
-    let parseDate = parse(date, 'yyyy-MM-dd', new Date());
-    let formatDate = format(parseDate, 'MM/dd/yyyy');
-    this.setState({
-      workTo: formatDate,
-    });
-  }
+  });
 
-  render() {
-    const { 
+      const { 
       name,
       email,
       phoneNo,
@@ -188,7 +51,160 @@ class App extends Component {
       genEditBtn,
       eduEditBtn,
       workEditBtn,
-      } = this.state;
+      dateStudyFrom,
+      dateStudyTo,
+      workFrom,
+      workTo,
+      } = state;
+
+  const handleNameChange = (e) => {
+    setState(prevState => {
+      return { ...prevState, name: e.target.value}
+    })
+  }
+  const handleEmailChange = (e) => {
+    setState(prevState => {
+      return {...prevState, email: e.target.value}
+    });
+  }
+  const handleNumberChange = (e) => {
+    setState(prevState => {
+      return {...prevState, phoneNo: e.target.value}
+    });
+  }
+  const handleSchoolChange = (e) => {
+    setState(prevState => {
+      return {...prevState, schoolName: e.target.value}
+    });
+  }
+  const handleTitleChange = (e) => {
+    setState(prevState => {
+      return {...prevState, studyTitle: e.target.value}
+    });
+  }
+  const handleCompanyName = (e) => {
+    setState(prevState => {
+      return {...prevState, companyName: e.target.value}
+    });
+  }
+  const handlePositionTitle = (e) => {
+    setState(prevState => {
+      return {...prevState, positionTitle: e.target.value}
+    });
+  }
+  const handleWorkDesc = (e) => {
+    setState(prevState => {
+      return {...prevState, workDesc: e.target.value}
+    });
+  }
+  const handleGeneralClick = (e) => {
+
+    genInfo.splice(0, 3);
+    e.preventDefault();
+    setState(prevState => {
+      return {
+        ...prevState,
+        genInfo: genInfo.concat(name, email, phoneNo),
+        genDisplay: false,
+        genEditBtn: true,
+      }
+
+    });
+  }
+  const handleEduClick = (e) => {
+    eduInfo.splice(0, 4);
+    e.preventDefault();
+    setState(prevState => {
+      return {
+        ...prevState, 
+        eduInfo: eduInfo.concat(schoolName, studyTitle, dateStudyFrom, dateStudyTo),
+        eduDisplay: false,
+        eduEditBtn: true}
+    });
+  }
+  const handleWorkClick = (e) => {
+    workExp.splice(0, 5);
+    e.preventDefault();
+    setState(prevState => {
+      return {
+        ...prevState,
+        workExp: workExp.concat(companyName, positionTitle, workDesc, workFrom, workTo),
+        workDisplay: false,
+        workEditBtn: true,
+      }
+    });
+  }
+  const handleGenEdit = () => {
+    setState(prevState => {
+      return {
+        ...prevState,
+        genDisplay: true,
+        genEditBtn: false,
+      }
+    });
+  };
+  const handleEduEdit = () => {
+    setState(prevState => {
+      return {
+        ...prevState,
+        eduDisplay: true,
+        eduEditBtn: false,
+      }
+    });
+  };
+  const handleWorkEdit = () => {
+    setState(prevState => {
+      return {
+        ...prevState,
+        workDisplay: true,
+        workEditBtn: false,
+      }
+    });
+  }
+  const updateStudyFrom = (e) => {
+    let date = e.target.value;
+    let parseDate = parse(date, 'yyyy-MM-dd', new Date());
+    let formatDate = format(parseDate, 'MM/dd/yyyy');
+    setState(prevState => {
+      return {
+        ...prevState,
+        dateStudyFrom: formatDate,
+      }
+    });
+  }
+  const updateStudyTo = (e) => {
+    let date = e.target.value;
+    let parseDate = parse(date, 'yyyy-MM-dd', new Date());
+    let formatDate = format(parseDate, 'MM/dd/yyyy');
+    setState(prevState => {
+      return {
+        ...prevState,
+        dateStudyTo: formatDate,
+      }
+    });
+  }
+  const updateWorkFrom = (e) => {
+    let date = e.target.value;
+    let parseDate = parse(date, 'yyyy-MM-dd', new Date());
+    let formatDate = format(parseDate, 'MM/dd/yyyy');
+    setState(prevState => {
+      return {
+        ...prevState,
+        workFrom: formatDate,
+      }
+    });
+  }
+  const updateWorkTo = (e) => {
+    let date = e.target.value;
+    let parseDate = parse(date, 'yyyy-MM-dd', new Date());
+    let formatDate = format(parseDate, 'MM/dd/yyyy');
+    setState(prevState => {
+      return {
+        ...prevState,
+        workTo: formatDate,
+      }
+    });
+  }
     return (
       <div className="container">
         <h1>CV Generator</h1>
@@ -198,30 +214,30 @@ class App extends Component {
           email={email}
           phoneNo={phoneNo}
           display={genDisplay} 
-          handleName={this.handleNameChange.bind(this)}
-          handleEmail={this.handleEmailChange.bind(this)}
-          handleNumber={this.handleNumberChange.bind(this)}
-          generalBtn={this.handleGeneralClick.bind(this)}
+          handleName={handleNameChange}
+          handleEmail={handleEmailChange}
+          handleNumber={handleNumberChange}
+          generalBtn={handleGeneralClick}
           />
         <GeneralOverview 
           genArr={genInfo}
           editDisplay={genEditBtn}
-          editFields={this.handleGenEdit.bind(this)}
+          editFields={handleGenEdit}
           />
         <h2>Educational Experience</h2>
         <EducationInfo 
           schoolName={schoolName} 
           studyTitle={studyTitle}
           display={eduDisplay}
-          handleSchool={this.handleSchoolChange.bind(this)}
-          handleTitle={this.handleTitleChange.bind(this)}
-          updateStudyFrom={this.updateStudyFrom.bind(this)}
-          updateStudyTo={this.updateStudyTo.bind(this)}
-          eduBtn={this.handleEduClick.bind(this)}
+          handleSchool={handleSchoolChange}
+          handleTitle={handleTitleChange}
+          updateStudyFrom={updateStudyFrom}
+          updateStudyTo={updateStudyTo}
+          eduBtn={handleEduClick}
           />
         <EduInfoOverview
           eduArr={eduInfo} 
-          editFields={this.handleEduEdit.bind(this)}
+          editFields={handleEduEdit}
           editDisplay={eduEditBtn}
           />
         <h2>Work Experience</h2>
@@ -230,22 +246,20 @@ class App extends Component {
         positionTitle={positionTitle}
         workDesc={workDesc}
         display={workDisplay}
-        handleCompanyName={this.handleCompanyName.bind(this)}
-        handlePositionTitle={this.handlePositionTitle.bind(this)}
-        handleWorkDesc={this.handleWorkDesc.bind(this)}
-        updateWorkFrom={this.updateWorkFrom.bind(this)}
-        updateWorkTo={this.updateWorkTo.bind(this)}
-        workBtn={this.handleWorkClick.bind(this)}
+        handleCompanyName={handleCompanyName}
+        handlePositionTitle={handlePositionTitle}
+        handleWorkDesc={handleWorkDesc}
+        updateWorkFrom={updateWorkFrom}
+        updateWorkTo={updateWorkTo}
+        workBtn={handleWorkClick}
          />
         <WorkExpOverview 
           workArr={workExp} 
-          editFields={this.handleWorkEdit.bind(this)}
+          editFields={handleWorkEdit}
           editDisplay={workEditBtn}
           />
       </div>
     )
-  }
-
 }
 
 export default App;
